@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+    }
+    .calculator {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        width: 300px;
+    }
+    .calculator h2 {
+        margin-bottom: 20px;
+        color: #333333;
+        font-size: 24px;
+    }
+    .calculator label {
+        font-size: 16px;
+        color: #555555;
+    }
+    .calculator input[type="number"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    .calculator button {
+        padding: 10px 20px;
+        margin: 10px 5px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    .calculator button:hover {
+        background-color: #0056b3;
+    }
+    #result {
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333333;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <h2>Calculator</h2>
+  
+  <label for="num1">Enter the first number:</label>
+  <input id="num1" type="number" placeholder="First Number" />
+  
+  <label for="num2">Enter the second number:</label>
+  <input id="num2" type="number" placeholder="Second Number" />
+  
+  <br /><br />
+  
+  <button onclick="performOperation('add')">Addition (+)</button>
+  <button onclick="performOperation('subtract')">Subtraction (-)</button>
+  <button onclick="performOperation('multiply')">Multiplication (*)</button>
+  <button onclick="performOperation('divide')">Division (/)</button>
+  
+  <br /><br />
+  
+  <p id="result"></p>
+</div>
+
+<script>
+function performOperation(operation) {
+  var num1 = parseFloat(document.getElementById('num1').value);
+  var num2 = parseFloat(document.getElementById('num2').value);
+  var result = 0;
+  
+  switch (operation) {
+    case 'add':
+      result = num1 + num2;
+      break;
+    case 'subtract':
+      result = num1 - num2;
+      break;
+    case 'multiply':
+      result = num1 * num2;
+      break;
+    case 'divide':
+      if (num2 !== 0) {
+        result = num1 / num2;
+      } else {
+        alert('Error: Division by zero');
+        return;
+      }
+      break;
+    default:
+      break;
+  }
+  
+  document.getElementById('result').innerText = 'Result: ' + result;
+}
+</script>
+
+</body>
+</html>
