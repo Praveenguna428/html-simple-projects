@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors Game</title>
+    <style>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://images.pexels.com/photos/3262249/pexels-photo-3262249.jpeg'), linear-gradient(270deg, #ff7e5f, #feb47b);
+            background-size: cover, 400% 400%;
+            background-blend-mode: overlay;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: #333;
+            color: #fff;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        #score {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .choice {
+            background: #f9f9f9;
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .choice:hover {
+            background: #e9e9e9;
+            transform: scale(1.1);
+        }
+
+        .play-again {
+            display: none;
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .play-again:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock-Paper-Scissors</h1>
+        <div class="score-board">
+            <div id="PLAYER-label" class="badge">User</div>
+            <div id="COMPUTER-label" class="badge">Comp</div>
+            <div id="score">0 : 0</div>
+        </div>
+        <div class="result">
+            <p>Make your move!</p>
+        </div>
+        <div class="choices">
+            <button id="rock" class="choice">✊</button>
+            <button id="paper" class="choice">✋</button>
+            <button id="scissors" class="choice">✌</button>
+        </div>
+        <div id="action-message"></div>
+        <button id="play-again" class="play-again">Play Again</button>
+    </div>
+    <script>
+        const userScore_span = document.getElementById('score');
+        const result_p = document.querySelector('.result > p');
+        const rock_div = document.getElementById('rock');
+        const paper_div = document.getElementById('paper');
+        const scissors_div = document.getElementById('scissors');
+        const playAgain_btn = document.getElementById('play-again');
+
+        let userScore = 0;
+        let compScore = 0;
+        let rounds = 0;
+
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * 3);
+            return choices[randomIndex];
+        }
+
+        function convertToWord(choice) {
+            if (choice === 'rock') return 'Rock';
+            if (choice === 'paper') return 'Paper';
+            return 'Scissors';
+        }
+
+        function win(userChoice, computerChoice) {
+            userScore++;
+            userScore_span.innerHTML = `${userScore} : ${compScore}`;
+            result_p.innerHTML = `${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. You win! 🎉`;
+        }
+
+        function lose(userChoice, computerChoice) {
+            compScore++;
+            userScore_span.innerHTML = `${userScore} : ${compScore}`;
+            result_p.innerHTML = `${convertToWord(userChoice)} loses to ${convertToWord(computerChoice)}. You lost... 💔`;
+        }
+
+        function draw(userChoice, computerChoice) {
+            result_p.innerHTML = `${convertToWord(userChoice)} equals ${convertToWord(computerChoice)}. It's a draw.`;
+        }
+
+        function game(userChoice) {
+            const computerChoice = getComputerChoice();
+            switch (userChoice + computerChoice) {
+                case 'rockscissors':
+                case 'paperrock':
+                case 'scissorspaper':
+                    win(userChoice, computerChoice);
+                    break;
+                case 'rockpaper':
+                case 'paperscissors':
+                case 'scissorsrock':
+                    lose(userChoice, computerChoice);
+                    break;
+                default:
+                    draw(userChoice, computerChoice);
+                    break;
+            }
+            rounds++;
+            if (rounds >= 40) {
+                showFinalResult();
+            }
+        }
+
+        function showFinalResult() {
+            if (userScore > compScore) {
+                result_p.innerHTML = `After 40 rounds, you win! 🎉 Final score: ${userScore} : ${compScore}`;
+            } else if (userScore < compScore) {
+                result_p.innerHTML = `After 40 rounds, you lose. 💔 Final score: ${userScore} : ${compScore}`;
+            } else {
+                result_p.innerHTML = `After 40 rounds, it's a draw. Final score: ${userScore} : ${compScore}`;
+            }
+            playAgain_btn.style.display = 'block';
+            rock_div.disabled = true;
+            paper_div.disabled = true;
+            scissors_div.disabled = true;
+        }
+
+        function resetGame() {
+            userScore = 0;
+            compScore = 0;
+            rounds = 0;
+            userScore_span.innerHTML = '0 : 0';
+            result_p.innerHTML = 'Make your move!';
+            playAgain_btn.style.display = 'none';
+            rock_div.disabled = false;
+            paper_div.disabled = false;
+            scissors_div.disabled = false;
+        }
+
+        function main() {
+            rock_div.addEventListener('click', () => game('rock'));
+            paper_div.addEventListener('click', () => game('paper'));
+            scissors_div.addEventListener('click', () => game('scissors'));
+            playAgain_btn.addEventListener('click', resetGame);
+        }
+
+        main();
+    </script>
+</body>
+</html>

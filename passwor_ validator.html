@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input[type="password"], input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #message {
+            margin-bottom: 20px;
+        }
+
+        #message p {
+            font-size: 14px;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Validator</h2>
+        <form id="passwordForm">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" id="showPassword"> Show Password
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="length" class="invalid">At least 8 characters</p>
+                <p id="letter" class="invalid">A lowercase letter</p>
+                <p id="capital" class="invalid">An uppercase letter</p>
+                <p id="number" class="invalid">A number</p>
+                <p id="special" class="invalid">A special character (!@#$%^&*)</p>
+            </div>
+            <button type="button" onclick="checkPassword()">Check Password</button>
+            <p id="result"></p>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const password = document.getElementById('password');
+            const showPassword = document.getElementById('showPassword');
+            const message = document.getElementById('message');
+            const length = document.getElementById('length');
+            const letter = document.getElementById('letter');
+            const capital = document.getElementById('capital');
+            const number = document.getElementById('number');
+            const special = document.getElementById('special');
+            const result = document.getElementById('result');
+
+            showPassword.addEventListener('change', function () {
+                if (this.checked) {
+                    password.type = 'text';
+                } else {
+                    password.type = 'password';
+                }
+            });
+
+            password.onfocus = function () {
+                message.style.display = 'block';
+            };
+
+            password.onblur = function () {
+                message.style.display = 'none';
+            };
+
+            password.onkeyup = function () {
+                // Validate length
+                if (password.value.length >= 8) {
+                    length.classList.remove('invalid');
+                    length.classList.add('valid');
+                } else {
+                    length.classList.remove('valid');
+                    length.classList.add('invalid');
+                }
+
+                // Validate lowercase letters
+                const lowerCaseLetters = /[a-z]/g;
+                if (password.value.match(lowerCaseLetters)) {
+                    letter.classList.remove('invalid');
+                    letter.classList.add('valid');
+                } else {
+                    letter.classList.remove('valid');
+                    letter.classList.add('invalid');
+                }
+
+                // Validate capital letters
+                const upperCaseLetters = /[A-Z]/g;
+                if (password.value.match(upperCaseLetters)) {
+                    capital.classList.remove('invalid');
+                    capital.classList.add('valid');
+                } else {
+                    capital.classList.remove('valid');
+                    capital.classList.add('invalid');
+                }
+
+                // Validate numbers
+                const numbers = /[0-9]/g;
+                if (password.value.match(numbers)) {
+                    number.classList.remove('invalid');
+                    number.classList.add('valid');
+                } else {
+                    number.classList.remove('valid');
+                    number.classList.add('invalid');
+                }
+
+                // Validate special characters
+                const specialCharacters = /[!@#$%^&*]/g;
+                if (password.value.match(specialCharacters)) {
+                    special.classList.remove('invalid');
+                    special.classList.add('valid');
+                } else {
+                    special.classList.remove('valid');
+                    special.classList.add('invalid');
+                }
+
+                checkPassword();
+            };
+
+            function checkPassword() {
+                let passwordValue = password.value;
+                let strengthMessage = "";
+
+                if (passwordValue.length < 8) {
+                    strengthMessage = "Password is too short";
+                    result.style.color = 'red';
+                } else {
+                    let strength = 0;
+                    if (passwordValue.match(/[a-z]/)) strength++;
+                    if (passwordValue.match(/[A-Z]/)) strength++;
+                    if (passwordValue.match(/[0-9]/)) strength++;
+                    if (passwordValue.match(/[^a-zA-Z0-9]/)) strength++;
+                    
+                    if (strength < 2) {
+                        strengthMessage = "Weak password";
+                        result.style.color = 'red';
+                    } else if (strength < 4) {
+                        strengthMessage = "Moderate password";
+                        result.style.color = 'orange';
+                    } else {
+                        strengthMessage = "Strong password";
+                        result.style.color = 'green';
+                    }
+                }
+
+                result.textContent = strengthMessage;
+            }
+        });
+    </script>
+</body>
+</html>

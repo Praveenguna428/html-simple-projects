@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAMES Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f8b400, #f06d06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .symbol {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .Friends {
+            color: #007bff;
+        }
+
+        .Lovers {
+            color: #e83e8c;
+        }
+
+        .Affection {
+            color: #fd7e14;
+        }
+
+        .Marriage {
+            color: #28a745;
+        }
+
+        .Enemies {
+            color: #dc3545;
+        }
+
+        .Siblings {
+            color: #6f42c1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .balloon::before, .balloon::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: inherit;
+        }
+
+        .balloon::before {
+            left: -15px;
+        }
+
+        .balloon::after {
+            right: -15px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-300px) translateX(30px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .falling-paper {
+            position: absolute;
+            top: -100px;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: rotate(45deg);
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+    </style>
+    <script>
+        function calculateFlames() {
+            var yourName = document.getElementById("yourName").value.toLowerCase();
+            var partnerName = document.getElementById("partnerName").value.toLowerCase();
+
+            // Remove spaces
+            yourName = yourName.replace(/\s/g, "");
+            partnerName = partnerName.replace(/\s/g, "");
+
+            // Calculate common letters
+            var commonLetters = 0;
+            for (var i = 0; i < yourName.length; i++) {
+                var char = yourName[i];
+                if (partnerName.includes(char)) {
+                    commonLetters++;
+                    partnerName = partnerName.replace(char, "");
+                }
+            }
+
+            var totalLetters = yourName.length + partnerName.length;
+            var flames = "FLAMES";
+
+            while (flames.length > 1) {
+                var index = (totalLetters % flames.length) - 1;
+                if (index === -1) {
+                    index = flames.length - 1;
+                }
+                flames = flames.slice(0, index) + flames.slice(index + 1);
+            }
+
+            var result;
+            var symbol;
+            switch (flames) {
+                case "F":
+                    result = "Friends";
+                    symbol = "👫";
+                    break;
+                case "L":
+                    result = "Lovers";
+                    symbol = "💖";
+                    break;
+                case "A":
+                    result = "Affection";
+                    symbol = "💕";
+                    break;
+                case "M":
+                    result = "Marriage";
+                    symbol = "💍";
+                    break;
+                case "E":
+                    result = "Enemies";
+                    symbol = "😠";
+                    break;
+                case "S":
+                    result = "Siblings";
+                    symbol = "👨‍👩‍👧‍👦";
+                    break;
+                default:
+                    result = "Error";
+                    symbol = "❌";
+            }
+
+            document.getElementById("result").innerHTML = `Result: <span class="${result}">${result} ${symbol}</span>`;
+        }
+
+        function createBalloons() {
+            const colors = ['#ff6f61', '#ffcc5c', '#88d8b0', '#6c5ce7', '#fd79a8'];
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.animationDuration = Math.random() * 5 + 5 + 's';
+                balloon.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(balloon);
+            }
+
+            for (let i = 0; i < 50; i++) {
+                const paper = document.createElement('div');
+                paper.classList.add('falling-paper');
+                paper.style.left = Math.random() * 100 + 'vw';
+                paper.style.animationDuration = Math.random() * 10 + 5 + 's';
+                paper.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                document.body.appendChild(paper);
+            }
+        }
+
+        window.onload = createBalloons;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>FLAMES Game</h1>
+        <label for="yourName">Your Name: </label>
+        <input id="yourName" placeholder="Your Name" type="text" />
+
+        <label for="partnerName">Partner's Name: </label>
+        <input id="partnerName" placeholder="Partner's Name" type="text" />
+
+        <button onclick="calculateFlames()">Calculate</button>
+
+        <div id="result"></div>
+    </div>
+</body>
+</html>

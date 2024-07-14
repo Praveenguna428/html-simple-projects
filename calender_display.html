@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar Display</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px;
+    position: relative;
+    z-index: 2;
+  }
+  h2 {
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  form {
+    margin-bottom: 20px;
+  }
+  label {
+    font-size: 16px;
+    color: #555555;
+    display: block;
+    margin: 10px 0 5px;
+  }
+  input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+  }
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+  td {
+    background-color: #f9f9f9;
+  }
+  td:hover {
+    background-color: #e9ecef;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Calendar Display</h2>
+
+  <form id="calendarForm">
+    <label for="year">Enter year:</label>
+    <input type="number" id="year" name="year" min="1" required>
+    <label for="month">Enter month:</label>
+    <input type="number" id="month" name="month" min="1" max="12" required>
+    <button type="button" onclick="displayCalendar()">Display Calendar</button>
+  </form>
+
+  <div id="calendarContainer"></div>
+</div>
+
+<script>
+function displayCalendar() {
+  var year = document.getElementById('year').value;
+  var month = document.getElementById('month').value;
+  
+  var calendarContainer = document.getElementById('calendarContainer');
+  var calendarHTML = '<h3>' + year + '-' + month + '</h3>';
+  
+  calendarHTML += '<table>';
+  calendarHTML += '<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>';
+  
+  var firstDay = new Date(year, month - 1, 1).getDay();
+  var daysInMonth = new Date(year, month, 0).getDate();
+  
+  var date = 1;
+  for (var i = 0; i < 6; i++) {
+    calendarHTML += '<tr>';
+    for (var j = 0; j < 7; j++) {
+      if (i === 0 && j < (firstDay === 0 ? 6 : firstDay - 1)) {
+        calendarHTML += '<td></td>';
+      } else if (date > daysInMonth) {
+        break;
+      } else {
+        calendarHTML += '<td>' + date + '</td>';
+        date++;
+      }
+    }
+    calendarHTML += '</tr>';
+    if (date > daysInMonth) {
+      break;
+    }
+  }
+  
+  calendarHTML += '</table>';
+  
+  calendarContainer.innerHTML = calendarHTML;
+}
+</script>
+
+</body>
+</html>
