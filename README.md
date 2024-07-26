@@ -1,33 +1,27 @@
-<h1 align="center">Hi, I'm Praveen Kumar Gunasekaran</h1>
-<h3 align="center">Aspiring programmer | Developer</h3>
+ <h2></h2>
+ <h1 align="center"> <img src="https://cdn.hackr.io/uploads/posts/large/15925654385a8PArotT5.png" alt="HTML" width="1000" height="350"/></h1>
+  <h2>Introduction</h2>
+  <p>This repository showcases my simple HTML projects. Each project demonstrates my growing proficiency in web development and problem-solving skills. Feel free to explore and provide feedback!</p>
 
-- I’m currently [Student](https://docs.google.com/document/d/e/2PACX-1vT4QwxNh6YjFcStfpBFNJf4FbRg45BrhrLT4-JE2EAXdyBI7mB5UouujkLKMfPeaOhS-YlzNwW0JA8r/pub)
+  <h2>Project List</h2>
+    <ul>
+        <li><strong>FLAMES Game:</strong> A fun game to determine the relationship between two people based on their names.</li>
+        <li><strong>Anagram Checker:</strong> A tool to check if two words are anagrams of each other.</li>
+        <li><strong>Calendar Display:</strong> A simple calendar display application.</li>
+        <li><strong>Calculator:</strong> A basic calculator for performing arithmetic operations.</li>
+        <li><strong>Factors Finder:</strong> A tool to find all the factors of a given number.</li>
+        <li><strong>Prime Number Check:</strong> A program to check if a number is a prime number.</li>
+        <li><strong>Elegant Word Counter:</strong> A word counting tool with an elegant user interface.</li>
+        <li><strong>Password Validator:</strong> A tool to validate the strength of a password.</li>
+        <li><strong>Age Calculator:</strong> A simple application to calculate age based on the input date.</li>
+        <li><strong>Rock-Paper-Scissors:</strong> A classic Rock-Paper-Scissors game to play against the computer.</li>
+    </ul>
 
-- I’m currently learning **html, python,**
+  <h2>How to Run the Projects</h2>
+    <p>To run these projects, simply download or clone this repository to your local machine. Open the HTML file of the project you want to run in your web browser.</p>
+    <pre>
+    git clone https://github.com/your-username/your-repository.git
+    </pre>
+    <p>Navigate to the project directory and open the HTML file in your preferred web browser.</p>
 
-- I’m currently collaborate on [CodSoft](https://github.com/Praveenguna428/codsoft.git)
-
-- I regularly write articles on [http://craftycodeverse.blogspot.com](http://craftycodeverse.blogspot.com)
-
-- Ask me about **SQL, python**
-
-- How to reach me **praveenguna428@gmail.com**
-
-- Know about my experiences [https://docs.google.com/document/d/e/2PACX-1vT4QwxNh6YjFcStfpBFNJf4FbRg45BrhrLT4-JE2EAXdyBI7mB5UouujkLKMfPeaOhS-YlzNwW0JA8r/pub](https://docs.google.com/document/d/e/2PACX-1vT4QwxNh6YjFcStfpBFNJf4FbRg45BrhrLT4-JE2EAXdyBI7mB5UouujkLKMfPeaOhS-YlzNwW0JA8r/pub)
-
-- Fun fact **I write code like I write jokes—sometimes it works, sometimes it doesn’t, but I always learn something new!**
-
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://linkedin.com/in/www.linkedin.com/in/praveen-kumar-pk2020" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="www.linkedin.com/in/praveen-kumar-pk2020" height="30" width="40" /></a>
-<a href="https://www.leetcode.com/https://leetcode.com/u/praveen_2020/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="https://leetcode.com/u/praveen_2020/" height="30" width="40" /></a>
-</p>
-
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://www.oracle.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/oracle/oracle-original.svg" alt="oracle" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
-
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=praveenguna428&show_icons=true&locale=en&layout=compact" alt="praveenguna428" /></p>
-
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=praveenguna428&show_icons=true&locale=en" alt="praveenguna428" /></p>
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=praveenguna428&" alt="praveenguna428" /></p>
+ 
