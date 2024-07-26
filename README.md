@@ -9,6 +9,7 @@
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/anagram-checker.html" target="_blank">Anagram Checker:</a> A tool to check if two words are anagrams of each other.</strong></li>
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/calender-display.html" target="_blank">Calender Display:</a>  A simple calendar display application.</strong></li>
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/calc.html" target="_blank">Calculator:</a>  A basic calculator for performing various operations.</strong></li>
+         <li><strong><a href="https://craftycodeverse.blogspot.com/2023/12/ball.html" target="_blank">Colour ball animation :</a> An animation of bouncing balls using HTML5 canvas and JavaScript.</strong></li>
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/factors-finder.html" target="_blank">Factors Finders:</a>  A tool to find all the factors of the given numbers</strong></li>
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/prime-number-check.html" target="_blank">Prime Number Checker:</a>  A program to check if the given number is prime number or not </strong></li>
          <li><strong><a href="https://craftycodeverse.blogspot.com/2024/06/elegant-word-counter.html" target="_blank">Elegant Word counter :</a>  A word counting tool with user friendly.</strong></li>
